@@ -7,4 +7,4 @@ User.create(name: 'Michael', profile_picture: "https://cdn.mos.cms.futurecdn.net
 User.create(name: 'Emma', profile_picture: "https://www.biography.com/.image/t_share/MTQzMzAxODc2MTU3MjYxMzgz/emma-watson_gettyimages-619546914jpg.jpg", username: "Emma123", password: "Emma123")
 
 
-puts 'seeding done ✅✅✅'
+puts 'seeding done ✅✅✅

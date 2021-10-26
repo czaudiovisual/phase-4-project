@@ -1,7 +1,19 @@
 class UsersController < ApplicationController
     
     def index
-        render json: User.all
-        # render json:{message: 'Hello'}
+        user = User.all
+        render json: user
     end
+
+    def create
+        user = User.create(user_params)
+        render json: user
+    end
+
+    private
+    
+    def user_params
+        params.require(:user).permit(:name, :profile_picture, :username, :password_digest)        
+    end
+
 end
