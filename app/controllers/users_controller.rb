@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-    
+    before_action :set_user, only: [:show, :update, :destroy]
+
     # to show all users
     def index
         user = User.all
@@ -8,7 +9,6 @@ class UsersController < ApplicationController
 
     # to show a user by id users/:id
     def show
-        set_user
         render json: @user, status: :ok
     end
 
@@ -21,18 +21,15 @@ class UsersController < ApplicationController
     # to update a user by id users/:id
     def update
         # find user to update
-        set_user
         @user.update(user_params)
-        head :no_content, status: :ok
+        render json: @user, status: :accepted
     end
 
     # to delete a user by id users/:id
     def destroy
-        set_user
         @user.destroy
-        render json: {message: 'deleted'}, status: :accepted
+        head :no_content, status: :ok
     end
-
 
     private
 
