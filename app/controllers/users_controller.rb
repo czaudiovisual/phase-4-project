@@ -19,7 +19,11 @@ class UsersController < ApplicationController
     # to create a user
     def create
         user = User.create(user_params)
-        render json: user, status: :created
+        if user.valid?
+            render json: user, status: :created
+        else
+            render json: {error: user.errors.full_messages}, status: :unprocessable_entity
+        end
     end
 
     # to update a user by id users/:id

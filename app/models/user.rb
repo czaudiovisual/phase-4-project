@@ -3,11 +3,10 @@ class User < ApplicationRecord
     # attr_accessor :name, :username, :profile_picture, :password, :password_confirmation
 
     # validation 
-    validates :name, presence: true
-    validates :username, presence: true
-    validates :username, uniqueness: true
-    validates :password, presence: true, case_sensitive: false
-    
+    validates :name, presence: true, length: {minimum: 3}
+    validates :username, presence: true, uniqueness: {case_sensitive: false}
+    validates :password, presence: true
 
+    
     has_secure_password
 end
