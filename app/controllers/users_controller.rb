@@ -29,8 +29,11 @@ class UsersController < ApplicationController
     # to update a user by id users/:id
     def update
         # find user to update
-        @user.update(user_params)
-        render json: @user, status: :accepted
+       if @user.update(user_params)
+            render json: @user, status: :accepted1
+        else
+            render json: {error: @user.errors.full_messages}, status: :unprocessable_entity
+        end
     end
 
     # to delete a user by id users/:id
