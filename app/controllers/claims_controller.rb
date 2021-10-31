@@ -4,18 +4,22 @@ class ClaimsController < ApplicationController
 
     # to show all claims
     def index
-        @claim = Claim.all
-        render json: @claim, status: :ok
+       if params[:user_id]
+        @claims = Claim.where(user_id: params[:user_id])
+       else
+         @claims = Claim.all
+       end
+        render json: @claims, status: :ok
     end
 
-    # to show a user by id users/:id
+    # to show a user by id claims/:id
     def show
         render json: @claim, status: :ok
     end
 
     # to create a claim
     def create
-        @claim = User.create!(claim_params)
+        @claim = Claim.create!(claim_params)
         render json: @claim, status: :created
     end
 
