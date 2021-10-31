@@ -19,7 +19,8 @@ class ClaimsController < ApplicationController
 
     # to create a claim
     def create
-        @claim = Claim.create!(claim_params)
+        user = set_user
+        @claim = user.claims.create!(claim_params)
         render json: @claim, status: :created
     end
 
