@@ -3,8 +3,8 @@ class UsersController < ApplicationController
 
     # to show all users
     def index
-        user = User.all
-        render json: user, status: :ok
+        @user = User.all
+        render json: @user, status: :ok
     end
 
     # to show a user by id users/:id
@@ -14,8 +14,8 @@ class UsersController < ApplicationController
 
     # to create a user
     def create
-        user = User.create!(user_params)
-        render json: user, status: :created
+        @user = User.create!(user_params)
+        render json: @user, status: :created
     end
 
     # to update a user by id users/:id
