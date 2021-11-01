@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
     # to show a user by id users/:id
     def show
-        render json: @user, include: :claims, status: :ok
+        render json: @user, status: :ok
     end
 
     # to create a user
