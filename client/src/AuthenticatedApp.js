@@ -1,5 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import NewClaim from './components/NewClaim';
 import Claims from './components/Claims'
 
 
@@ -17,24 +18,24 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
   return (
     <div className="App">
       <nav>
-        <span>
-          {/* <NavLink to="/groups">Groups</NavLink>{" - "}
-          <NavLink to="/events">Events</NavLink> */}
-        </span>
         <span>Logged in as {currentUser.username} <button onClick={handleLogout}>Logout</button></span>
+        <h1>hello</h1>
       </nav>
-      <h1>Hello 2
-      </h1>
+      <div>
+
       <Router>
         <Switch>
-          <Route exact path="/claims">
+
+          <Route exact path="/claims" component={Claims}>
             <Claims currentUser={currentUser} setCurrentUser={setCurrentUser} />
           </ Route>
-          <Route exact path="/claims/new">
-            <Claims currentUser={currentUser} setCurrentUser={setCurrentUser} />
+
+          <Route exact path="/claims/new" component={NewClaim} >
+            <NewClaim currentUser={currentUser} setCurrentUser={setCurrentUser} />
           </Route>
         </Switch>
       </ Router>
+      </div>
     </div>
   );
 }

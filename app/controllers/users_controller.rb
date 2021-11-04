@@ -1,38 +1,34 @@
 class UsersController < ApplicationController
-    before_action :set_user, only: [:show, :update, :destroy]
+    before_action :find_user, except: [:create, :index, :show]
 
-    # to show all users
+    # show all users
     def index
-        @users = User.all
-        render json: @users, status: :ok
+        render json: User.all
     end
 
-    # to show a user by id users/:id
-    def show
-        render json: @user, status: :ok
-    end
-
-    # def show 
-    #     if current_user
-    #         render json: current_user
-    #     else
-    #         render json: {}, status: :unauthorized
-    # end
-
-    # to create a user
+    # create a user
     def create
         user = User.create!(user_params)
         session[:user_id] = user.id
         render json: user, status: :created
     end
 
-    # to update a user by id users/:id
-    def update
-        @user.update!(user_params)
-        render json: @user, status: :accepted
+    # show user users/:id
+    def show
+        if current_user
+            render json: current_user
+        else
+            render json: {}, status: :unauthorized
+        end
     end
 
-    # to delete a user by id users/:id
+    # update user users/:id
+    def update
+        @user.update!(user_params)
+        render json: @user, status: :ok
+    end
+
+    # destroy user users/:id
     def destroy
         @user.destroy
         head :no_content, status: :ok
@@ -41,12 +37,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.permit(:username, :password, :password_confirmation)        
+        params.permit(:username, :password, :password_confirmation)
     end
 
-    # set instance variable scoped to the instance
-    def set_user
-        @user = User.first
-        # @user = User.find(params[:id])
-    end
 end

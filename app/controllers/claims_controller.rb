@@ -1,49 +1,48 @@
 class ClaimsController < ApplicationController
+    before_action :find_claim, except: [:create, :index]
+    before_action :current_user
 
-    before_action :set_claim, only: [:show, :update, :destroy]
-
-    # to show all claims
+    # show all claims
     def index
-       if params[:user_id]
-        @claims = Claim.where(user_id: params[:user_id])
-       else
-         @claims = Claim.all
-       end
-        render json: @claims, status: :ok
+        render json: current_user.claims, status: :ok
     end
 
-    # to show a user by id claims/:id
+    # create a claim
+    def create
+        if current_user
+            claim = current_user.claims.create!(claim_params)
+            render json: claim, status: :created
+        end
+    end
+    
+
+    # show claim claims/:id
     def show
         render json: @claim, status: :ok
     end
 
-    # to create a claim
-    def create
-        user = set_user
-        @claim = user.claims.create!(claim_params)
-        render json: @claim, status: :created
-    end
-
-    # to update a claim by id claims/:id
+    # update claim claims/:id
     def update
-        @claim.update!(claim_params) 
-        render json: @claim, status: :accepted
+        @claim.update!(claim_params)
+        render json: @claim, status: :ok
     end
 
-    # to delete a claim by id claims/:id
+    # destroy claim claims/:id
     def destroy
-        @claim.destroy
-        head :no_content, status: :ok
+        if current_user
+            current_user.claims.find_by(id: params[:id]).destroy
+            head :no_content
+        end
     end
 
     private
 
+    def find_claim
+        @claim = Claim.find_by(id: params[:id])
+    end
+
     def claim_params
         params.require(:claim).permit(:address, :item_name, :description, :user_id)        
     end
-
-    # set instance variable scoped to the instance
-    def set_claim
-        @claim = Claim.find(params[:id])
-    end
+   
 end
