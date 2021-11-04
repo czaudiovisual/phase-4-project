@@ -12,9 +12,17 @@ class UsersController < ApplicationController
         render json: @user, status: :ok
     end
 
+    # def show 
+    #     if current_user
+    #         render json: current_user
+    #     else
+    #         render json: {}, status: :unauthorized
+    # end
+
     # to create a user
     def create
-        @user = User.create!(user_params)
+        user = User.create!(user_params)
+        session[:user_id] = user.id
         render json: user, status: :created
     end
 
@@ -33,7 +41,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:name, :profile_picture, :username, :password, :password_confirmation)        
+        params.permit(:username, :password, :password_confirmation)        
     end
 
     # set instance variable scoped to the instance

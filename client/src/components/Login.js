@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Redirect, useHistory, Link } from 'react-router-dom'
 
 function Login({ setCurrentUser }) {
-  const history = useHistory()
+  // const history = useHistory()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   
@@ -19,11 +19,11 @@ function Login({ setCurrentUser }) {
         if (res.ok) {
           res.json().then(user => {
             setCurrentUser(user)
-            history.push('/claims')
+            // history.push('/claims')
           })
         } else {
           setCurrentUser({ username: " " })
-          history.push('/claims')
+          // history.push('/claims')
           res.json().then(errors => {
             console.error(errors)
           })

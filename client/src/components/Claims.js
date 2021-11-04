@@ -61,7 +61,6 @@ class Claims extends React.Component {
                 <h3 className="movie-titles">{claim.item_name}</h3>
                 <h3 className="movie-titles">{claim.description}</h3>
                 <p>Hello</p>
-                <img className="img-poster" src={claim.description} alt="img-url" />
                 <button className="button-img"
                     id={claim.id}
                     onClick={this.deleteClick}>Delete</button>

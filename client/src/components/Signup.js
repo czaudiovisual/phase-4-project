@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useHistory, Link } from 'react-router-dom'
 
 function Signup({ setCurrentUser }) {
-  const history = useHistory()
+  // const history = useHistory()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
@@ -24,7 +24,7 @@ function Signup({ setCurrentUser }) {
         if (res.ok) {
           res.json().then(user => {
             setCurrentUser(user)
-            history.push('/groups')
+            // history.push('/groups')
           })
         } else {
           res.json().then(errors => {

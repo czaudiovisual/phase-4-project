@@ -28,6 +28,7 @@ class ApplicationController < ActionController::API
   private
   
   def current_user
-    @user = User.first 
+    User.find_by(id: session[:user_id])
+    # @user = User.first 
   end
 end
