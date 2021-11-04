@@ -38,6 +38,7 @@ class UsersController < ApplicationController
 
     # set instance variable scoped to the instance
     def set_user
-        @user = User.find(params[:id])
+        @user = User.first
+        # @user = User.find(params[:id])
     end
 end
