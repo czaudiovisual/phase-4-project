@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import { useHistory, Link } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
 
-function Signup({ setCurrentUser }) {
+function Signup({setCurrentUser}) {
   const history = useHistory()
+  const [name, setName] = useState('')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
-  
+
   const handleSubmit = (event) => {
     event.preventDefault()
     fetch('/signup', {
@@ -15,71 +17,65 @@ function Signup({ setCurrentUser }) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        username,
-        password,
-        password_confirmation: passwordConfirmation
+        name: name,
+        username: username,
+        password: password,
+        password_confirmation: passwordConfirmation,
       })
-    })
-      .then(res => {
-        if (res.ok) {
-          res.json().then(user => {
-            setCurrentUser(user)
-            history.push('/claims')
-          })
-        } else {
-          res.json().then(errors => {
-            console.error(errors)
-          })
-        }
+    }) 
+      .then((user) => {
+        setCurrentUser(user);
+        history.push('/claims')
+        
       })
   }
   return (
-    <div className="authForm">
-      <form onSubmit={handleSubmit}>
-        <h1>Sign Up</h1>
-        <p>
-          <label 
-            htmlFor="username"
-          >
-            Username
-          </label>
-          <input
-            type="text"
-            name="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </p>
-        <p>
-          <label 
-            htmlFor="password"
-          >
-            Password
-          </label>
-          <input
-            type="password"
-            name=""
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </p>
-        <p>
-          <label 
-            htmlFor="password_confirmation"
-          >
-            Password Confirmation
-          </label>
-          <input
-            type="password_confirmation"
-            name="password_confirmation"
-            value={passwordConfirmation}
-            onChange={(e) => setPasswordConfirmation(e.target.value)}
-          />
-        </p>
-        <p><button type="submit">Sign Up</button></p>
-        <p>-- or --</p>
-        <p><Link to="/login">Log In</Link></p>
-      </form>
+    <div className="body-app">
+      <div className="form-outsider">
+        <div className="form-container">
+          <div className="authForm">
+            <form className="register-form" onSubmit={handleSubmit}>
+              <h1>Sign Up</h1>
+              <input
+                type="text"
+                id="name"
+                className="form-field"
+                placeholder="Name"
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+              />
+              <input
+                type="text"
+                id="username"
+                className="form-field"
+                placeholder="Username"
+                value={username}
+                onChange={(event) => setUsername(event.target.value)}
+              />
+              <input
+                type="password"
+                id="password"
+                className="form-field"
+                placeholder="Password"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+              />
+              <input
+                type="password_confirmation"
+                ide="password_confirmation"
+                className="form-field"
+                placeholder="Password Confirmation"
+                value={passwordConfirmation}
+                onChange={(event) => setPasswordConfirmation(event.target.value)}
+              />
+              <br />
+              <Button variant="success" type="submit">Sign Up</Button>{' '}
+              <p>-- or --</p>
+              <Button variant="secondary" href="/login">Login</Button>{' '}
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

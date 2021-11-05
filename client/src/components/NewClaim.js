@@ -32,38 +32,40 @@ function NewClaim() {
 
 
     return (
-        <div className="form-outsider">
-            <div className="form-container">
-                <form className="register-form" onSubmit={handleOnSubmit}>
-                    <p>Add Claim</p>
-                    <input
-                        onChange={(event) => setAddress(event.target.value)}
-                        value={address}
-                        className="form-field"
-                        placeholder="Address"
-                        type="text"
-                        name="address" />
-                    <input
-                        onChange={(event) => setItemName(event.target.value)}
-                        value={item_name}
-                        className="form-field"
-                        placeholder="Item"
-                        type="text"
-                        name="item_name" />
-                    <textarea
-                        onChange={(event) => setDescription(event.target.value)}
-                        value={description}
-                        className="form-field"
-                        placeholder="Description"
-                        type="text"
-                        name="description"
+        <div className="body-app">
+            <div className="form-outsider">
+                <div className="form-container">
+                    <form className="register-form" onSubmit={handleOnSubmit}>
+                        <p>Add Claim</p>
+                        <input
+                            onChange={(event) => setAddress(event.target.value)}
+                            value={address}
+                            className="form-field"
+                            placeholder="Address"
+                            type="text"
+                            name="address" />
+                        <input
+                            onChange={(event) => setItemName(event.target.value)}
+                            value={item_name}
+                            className="form-field"
+                            placeholder="Item"
+                            type="text"
+                            name="item_name" />
+                        <textarea
+                            onChange={(event) => setDescription(event.target.value)}
+                            value={description}
+                            className="form-field"
+                            placeholder="Description"
+                            type="text"
+                            name="description"
 
-                        form="usrform">Enter description here...
-                    </textarea>
-                    <Button variant="success" type="submit">Submit</Button>{' '}
-                </form>
-                <div className="new-member-form-container-container"> </div>
-            </ div>
+                            form="usrform">Enter description here...
+                        </textarea>
+                        <Button variant="success" type="submit">Submit</Button>{' '}
+                    </form>
+                    <div className="new-member-form-container-container"> </div>
+                </ div>
+            </div>
         </div>
     )
 }

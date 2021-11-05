@@ -30,31 +30,33 @@ function Login({ setCurrentUser }) {
   };
 
   return (
-    <div className="form-outsider">
-      <div className="form-container">
-        <h3>Login</h3>
-        <form className="register-form" onSubmit={handleSubmit}>
-          <input
-            className="custom-imputs"
-            type="text"
-            className="form-field"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <input
-            className="custom-imputs"
-            type="password"
-            className="form-field"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <br />
-          <Button variant="success" type="submit">Login</Button>{' '}
-          <br />
-          <Button variant="secondary" href="/signup">Sign Up</Button>{' '}
-        </form>
+    <div className="body-app">
+      <div className="form-log">
+        <div className="form-container">
+          <h3>Login</h3>
+          <form className="register-form" onSubmit={handleSubmit}>
+            <input
+              className="custom-imputs"
+              type="text"
+              className="form-field"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <input
+              className="custom-imputs"
+              type="password"
+              className="form-field"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <br />
+            <Button variant="success" type="submit">Login</Button>{' '}
+            <br />
+            <Button variant="secondary" href="/signup">Sign Up</Button>{' '}
+          </form>
+        </div>
       </div>
     </div>
   );
