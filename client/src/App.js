@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
 import AuthenticatedApp from './AuthenticatedApp'
 import UnauthenticatedApp from './UnauthenticatedApp'
-import { BrowserRouter as Router } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
-  const [authChecked, setAuthChecked] = useState(false)
+  // const [authChecked, setAuthChecked] = useState(false)
 
   useEffect(() => {
     fetch('/me', {
@@ -15,18 +17,20 @@ function App() {
         if (res.ok) {
           res.json().then((user) => {
             setCurrentUser(user)
-            setAuthChecked(true)
+
           })
-        } else {
-          setAuthChecked(true)
+
+          // } else {
+          //   setAuthChecked(true)
         }
       })
   }, [])
 
-  if(!authChecked) { return <div></div>}
+  // if(!authChecked) { return <div></div>}
   return (
-    <Router>
-      {currentUser ? (
+    <div className="App">
+      <Router>
+        {currentUser ? (
           <AuthenticatedApp
             setCurrentUser={setCurrentUser}
             currentUser={currentUser}
@@ -36,9 +40,10 @@ function App() {
             setCurrentUser={setCurrentUser}
           />
         )
-      }
-    </Router>
+        }
+      </Router>
+    </div>
   )
 }
 
-export default App
+export default App;

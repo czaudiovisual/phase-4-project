@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
+import { Button } from 'react-bootstrap'
 import "../App.css";
 
 function Login({ setCurrentUser }) {
@@ -29,33 +30,32 @@ function Login({ setCurrentUser }) {
   };
 
   return (
-    <div>
-      <h3>LOGIN</h3>
-      <form onSubmit={handleSubmit}>
-        <input
-          className="custom-imputs"
-          type="text"
-          placeholder="Email..."
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <br />
-        <input
-          className="custom-imputs"
-          type="password"
-          placeholder="Password..."
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <br />
-        <br />
-        <button className="custom-button" type="submit">
-          LOGIN
-        </button>
-      </form>
-      <p>
-        <Link to="/signup">Sign Up</Link>
-      </p>
+    <div className="form-outsider">
+      <div className="form-container">
+        <h3>Login</h3>
+        <form className="register-form" onSubmit={handleSubmit}>
+          <input
+            className="custom-imputs"
+            type="text"
+            className="form-field"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <input
+            className="custom-imputs"
+            type="password"
+            className="form-field"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <br />
+          <Button variant="success" type="submit">Login</Button>{' '}
+          <br />
+          <Button variant="secondary" href="/signup">Sign Up</Button>{' '}
+        </form>
+      </div>
     </div>
   );
 }
