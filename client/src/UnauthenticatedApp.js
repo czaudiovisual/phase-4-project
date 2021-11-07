@@ -6,7 +6,7 @@ import Signup from './components/Signup'
 function UnauthenticatedApp({ setCurrentUser }) {
   return (
     <Switch>
-      <Route exact path="/login">
+      <Route exact path="/">
         <Login setCurrentUser={setCurrentUser} />
       </Route>
       <Route exact path="/signup">

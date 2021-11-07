@@ -3,6 +3,7 @@ import NaviBar from "./components/NaviBar";
 import { BrowserRouter as Router, Switch, Route, useHistory } from 'react-router-dom'
 import NewClaim from './components/NewClaim';
 import Claims from './components/Claims'
+import EditClaim from './components/EditClaim'
 
 
 function AuthenticatedApp({ currentUser, setCurrentUser }) {
@@ -14,7 +15,7 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
       .then(res => {
         if (res.ok) {
           setCurrentUser(null)
-          history.push('/login')
+          history.push('/')
         }
       })
   }
@@ -36,8 +37,8 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
             <Route exact path="/claims/new" component={NewClaim} >
               <NewClaim currentUser={currentUser} setCurrentUser={setCurrentUser} />
             </Route>
-            <Route exact path="/dogs/:id/edit">
-              {/* <EditClaim /> */}
+            <Route exact path="/claims/:id/edit" component={NewClaim} >
+              <EditClaim currentUser={currentUser} setCurrentUser={setCurrentUser} />
             </Route>
           </Switch>
         </ Router>

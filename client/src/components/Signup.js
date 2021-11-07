@@ -71,7 +71,7 @@ function Signup({setCurrentUser}) {
               <br />
               <Button variant="success" type="submit">Sign Up</Button>{' '}
               <p>-- or --</p>
-              <Button variant="secondary" href="/login">Login</Button>{' '}
+              <Button variant="secondary" href="/">Login</Button>{' '}
             </form>
           </div>
         </div>

@@ -1,21 +1,3 @@
-// import {useEffect, useState} from "react";
-// import '../App.css';
-
-
-// function Claims(){
-//     const [claims, setClaims] = useState([])
-
-
-//     return(
-//         <div className="body-app">
-//             <h1>Hello</h1>
-
-//         </div>
-//     )
-// }
-
-// export default Claims;
-
 import React from "react";
 import { Card, Button } from "react-bootstrap"
 
@@ -37,34 +19,6 @@ class Claims extends React.Component {
         });
     };
 
-    // deleteClick = (event) => {
-    //     // console.log(event.target.id)
-    //     fetch(`/claims${event.target.id}`, {
-    //         method: "DELETE",
-    //     })
-    //         .then(() => {
-    //             const filterMovies = this.state.movies.filter(movie => {
-    //                 // console.log(movie, "Deleted -----", event.target.id != movie.id);
-    //                 return movie.id != event.target.id
-    //             })
-    //             const filterMoreMovies = this.state.filterAllMovies.filter(movie => {
-    //                 return movie.id != event.target.id
-    //             })
-    //             return this.setState({
-    //                 claims: [...filterMovies],
-    //                 filterAllMovies: [...filterMoreMovies]
-    //             })
-    //         });
-
-    // }
-
-    // renderTheatersForm = () => {
-    //     return this.state.theaters.map(theaters => {
-    //         return <option
-    //             value={theaters.id}>{theaters.name}</option>
-    //     });
-    // }
-
     renderClaims = () => {
         return this.state.claims.map((claim) => {
             return <div className="card-box">
@@ -75,7 +29,7 @@ class Claims extends React.Component {
                         <Card.Subtitle className="mb-2 text-muted">{claim.address}</Card.Subtitle>
                         <Card.Text>{claim.description}</Card.Text>
                         <div className="d-grid gap-2">
-                            <Button variant="primary" size="sm">Edit</Button>
+                            <Button variant="primary" size="sm" href={`/claims/${claim.id}/edit`}>Edit</Button>
                             <Button className="d-grid gap-2" variant="danger" size="sm">Delete</Button>
                         </div>
                     </Card.Body>
