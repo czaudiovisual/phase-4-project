@@ -24,25 +24,32 @@ class Claims extends React.Component {
         fetch(`/claims/${event.target.id}`, {
             method: "DELETE",
         })
-        .then((res) => res.json())
-        .then((data) => this.setState({
-            claims: [...this.state.claims], data, 
-            
-        }));
+            // .then((res) => res.json())
+            .then((data) => {
+                const filterClaims = this.state.claims.filter(claim => {
+                    console.log(claim, "Deleted -----", event.target.id != claim.id);
+                    return claim.id != event.target.id;
+                })
+                 return this.setState({
+                    claims: [...filterClaims], data,
+                })
+            });
     }
 
     renderClaims = () => {
         return this.state.claims.map((claim) => {
             return <div className="card-box">
-                <Card style={{ width: '18rem' }}>
-                    <Card.Img variant="top" src={claim.image_url} />
+                <Card className="card-size" style={{ width: '18rem' }}>
+                    <Card.Img className="image-url-size" variant="top" src={claim.image_url} />
                     <Card.Body>
                         <Card.Title>{claim.item_name}</Card.Title>
                         <Card.Subtitle className="mb-2 text-muted">{claim.address}</Card.Subtitle>
                         <Card.Text>{claim.description}</Card.Text>
-                        <div className="d-grid gap-2">
-                            <Button variant="primary" size="sm" href={`/claims/${claim.id}/edit`}>Edit</Button>
-                            <Button className="d-grid gap-2" variant="danger" size="sm" onClick={this.deleteClaims}>Delete</Button>
+                        <div className="button-organizer">
+                            <div className="d-grid gap-2">
+                                <Button variant="primary" size="sm" href={`/claims/${claim.id}/edit`}>Edit</Button>
+                                <Button id={claim.id} className="d-grid gap-2" variant="danger" size="sm" onClick={this.deleteClaims}>Delete</Button>
+                            </div>
                         </div>
                     </Card.Body>
                 </Card>
