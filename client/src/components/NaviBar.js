@@ -2,7 +2,7 @@ import React from 'react';
 // import 'bootstrap/dist/css/bootstrap.css';
 import { Nav, Navbar, Container } from 'react-bootstrap'
 
-function NaviBar() {
+function NavigBar() {
     return (
         <div className="nav-links">
             <Navbar bg="primary" variant="dark">
@@ -18,4 +18,4 @@ function NaviBar() {
     )
 }
 
-export default NaviBar;
+export default NavigBar;

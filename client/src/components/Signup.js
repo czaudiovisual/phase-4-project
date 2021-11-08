@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
-import { useHistory, Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 
-function Signup({setCurrentUser}) {
+function Signup({ setCurrentUser }) {
   const history = useHistory()
   const [name, setName] = useState('')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
+  const [error, setError] = useState("")
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -22,13 +23,19 @@ function Signup({setCurrentUser}) {
         password: password,
         password_confirmation: passwordConfirmation,
       })
-    }) 
-      .then((user) => {
-        setCurrentUser(user);
-        history.push('/claims')
-        
-      })
+    })
+    .then((response) => {
+      if (response.ok) {
+        response.json().then((user) => {
+          setCurrentUser(user);
+          history.push('/claims')
+        })
+      } else {
+        response.json().then((error => setError(error.error)))
+      }
+    })
   }
+
   return (
     <div className="body-app">
       <div className="form-outsider">
@@ -71,7 +78,7 @@ function Signup({setCurrentUser}) {
               <br />
               <Button variant="success" type="submit">Sign Up</Button>{' '}
               <p>-- or --</p>
-              <Button variant="secondary" href="/">Login</Button>{' '}
+              <Button variant="secondary" href="/login">Login</Button>{' '}
             </form>
           </div>
         </div>

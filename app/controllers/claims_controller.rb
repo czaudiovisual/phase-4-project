@@ -2,12 +2,12 @@ class ClaimsController < ApplicationController
     before_action :find_claim, except: [:create, :index]
     before_action :current_user
 
-    # show all claims
+    # show all claims  
     def index
         render json: current_user.claims, status: :ok
     end
 
-    # create a claim
+    # create a claims
     def create
         if current_user
             claim = current_user.claims.create!(claim_params)
@@ -42,7 +42,7 @@ class ClaimsController < ApplicationController
     end
 
     def claim_params
-        params.require(:claim).permit(:address, :item_name, :description, :user_id)        
+        params.permit(:address, :item_name, :description, :user_id)        
     end
    
 end

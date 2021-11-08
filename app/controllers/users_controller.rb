@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
     # show all users
     def index
-        render json: User.all
+        render json: User.all, status: :ok
     end
 
     # create a user
@@ -23,10 +23,10 @@ class UsersController < ApplicationController
     end
 
     # update user users/:id
-    def update
-        @user.update!(user_params)
-        render json: @user, status: :ok
-    end
+    # def update
+    #     @user.update!(user_params)
+    #     render json: @user, status: :ok
+    # end
 
     # destroy user users/:id
     def destroy
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.permit(:username, :password, :password_confirmation)
+        params.permit(:name, :username, :password, :password_confirmation)
     end
 
 end

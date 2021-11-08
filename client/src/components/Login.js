@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Alert } from "react-bootstrap"
 import { useHistory, Link } from "react-router-dom";
 import { Button } from 'react-bootstrap'
 import "../App.css";
@@ -6,28 +7,32 @@ import "../App.css";
 function Login({ setCurrentUser }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const [error, setError] = useState("")
   const history = useHistory();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    const requestOptions = {
+    fetch("/login", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         username: username,
         password: password,
       }),
-    };
-
-    fetch("/login", requestOptions)
-      .then((response) => response.json())
-      .then((user) => {
-        setCurrentUser(user);
-        history.push("/claims");
-      });
+    }).then((response) => {
+      if (response.ok) {
+        response.json().then((user) => {
+          setCurrentUser(user);
+          history.push('/')
+        });
+      } else {
+        response.json().then((error) => setError(error.error));
+      }
+    });
   };
+
 
   return (
     <div className="body-app">
@@ -35,13 +40,16 @@ function Login({ setCurrentUser }) {
         <div className="form-container">
           <h3>Login</h3>
           <form className="register-form" onSubmit={handleSubmit}>
+          {error ?
+            <Alert variant="danger">{error}</Alert> : <Alert variant="danger="></Alert>
+          }
             <input
               className="custom-imputs"
               type="text"
               className="form-field"
               placeholder="Username"
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(event) => setUsername(event.target.value)}
             />
             <input
               className="custom-imputs"
@@ -49,7 +57,7 @@ function Login({ setCurrentUser }) {
               className="form-field"
               placeholder="Password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(event) => setPassword(event.target.value)}
             />
             <br />
             <Button variant="success" type="submit">Login</Button>{' '}
