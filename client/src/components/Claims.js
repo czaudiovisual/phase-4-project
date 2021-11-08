@@ -19,6 +19,16 @@ class Claims extends React.Component {
         });
     };
 
+    deleteClaims = (event) => {
+        fetch(`/claims/${event.target.id}`, {
+            method: "DELETE",
+        })
+        .then((res) => res.json())
+        .then((data) => this.setState({
+            claims: [...this.state.claims], data, 
+        }));
+    }
+
     renderClaims = () => {
         return this.state.claims.map((claim) => {
             return <div className="card-box">
@@ -30,7 +40,7 @@ class Claims extends React.Component {
                         <Card.Text>{claim.description}</Card.Text>
                         <div className="d-grid gap-2">
                             <Button variant="primary" size="sm" href={`/claims/${claim.id}/edit`}>Edit</Button>
-                            <Button className="d-grid gap-2" variant="danger" size="sm">Delete</Button>
+                            <Button className="d-grid gap-2" variant="danger" size="sm" onClick={this.deleteClaims}>Delete</Button>
                         </div>
                     </Card.Body>
                 </Card>
