@@ -33,7 +33,7 @@ function EditClaim() {
     }
 
     return (
-        <div className="body-app">
+        <div className="body-app-edit">
             <div className="form-outsider">
                 <div className="form-container">
                     <form className="register-form" onSubmit={handleOnSubmit}>
