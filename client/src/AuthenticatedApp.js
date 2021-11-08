@@ -1,5 +1,5 @@
 import './App.css';
-import NaviBar from "./components/NaviBar";
+import NavigBar from "./components/NaviBar";
 import { BrowserRouter as Router, Switch, Route, useHistory } from 'react-router-dom'
 import NewClaim from './components/NewClaim';
 import Claims from './components/Claims'
@@ -22,7 +22,7 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
   return (
     <div className="App">
       <nav>
-        <NaviBar />
+        <NavigBar />
         <span>Logged in as {currentUser.username} <button onClick={handleLogout}>Logout</button></span>
       </nav>
       <div>
