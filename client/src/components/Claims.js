@@ -20,12 +20,14 @@ class Claims extends React.Component {
     };
 
     deleteClaims = (event) => {
+        // console.log(event.target.id)
         fetch(`/claims/${event.target.id}`, {
             method: "DELETE",
         })
         .then((res) => res.json())
         .then((data) => this.setState({
             claims: [...this.state.claims], data, 
+            
         }));
     }
 
@@ -33,7 +35,7 @@ class Claims extends React.Component {
         return this.state.claims.map((claim) => {
             return <div className="card-box">
                 <Card style={{ width: '18rem' }}>
-                    <Card.Img variant="top" src={claim.item_img} />
+                    <Card.Img variant="top" src={claim.image_url} />
                     <Card.Body>
                         <Card.Title>{claim.item_name}</Card.Title>
                         <Card.Subtitle className="mb-2 text-muted">{claim.address}</Card.Subtitle>

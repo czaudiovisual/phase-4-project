@@ -42,7 +42,7 @@ class ClaimsController < ApplicationController
     end
 
     def claim_params
-        params.permit(:address, :item_name, :description, :user_id)        
+        params.permit(:address, :item_name, :description, :user_id, :image_url)        
     end
    
 end
