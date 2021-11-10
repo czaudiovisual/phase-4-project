@@ -28,7 +28,7 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
       <div>
         <Router>
           <Switch>
-            <Route exact path="/">
+            <Route exact path="/" component={AuthenticatedApp}>
               <Claims currentUser={currentUser} setCurrentUser={setCurrentUser} />
             </ Route>
             <Route exact path="/claims" component={Claims}>

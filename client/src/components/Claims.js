@@ -25,13 +25,13 @@ class Claims extends React.Component {
             method: "DELETE",
         })
             // .then((res) => res.json())
-            .then((data) => {
+            .then(() => {
                 const filterClaims = this.state.claims.filter(claim => {
-                    console.log(claim, "Deleted -----", event.target.id != claim.id);
+                    // console.log(claim, "Deleted -----", event.target.id != claim.id);
                     return claim.id != event.target.id;
                 })
                  return this.setState({
-                    claims: [...filterClaims], data,
+                    claims: [...filterClaims]
                 })
             });
     }

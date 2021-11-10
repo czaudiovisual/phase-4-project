@@ -2,6 +2,7 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Login from './components/Login'
 import Signup from './components/Signup'
+// import Claims from './components/Claims'
 
 function UnauthenticatedApp({ setCurrentUser }) {
   return (
@@ -12,6 +13,7 @@ function UnauthenticatedApp({ setCurrentUser }) {
       <Route exact path="/signup">
         <Signup setCurrentUser={setCurrentUser}/>
       </Route>
+      {/* <Route exact path="*" component={Claims} /> */}
     </Switch>
   )
 }
