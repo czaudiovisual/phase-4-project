@@ -17,7 +17,7 @@ Claims manager is a simple app that allows you to add claims requests for future
 
 on the terminal type ```rails s```
 ```
-this will start the frontend on http://localhost:3000
+this will start the Backend on http://localhost:3000
 ```
 
 ## To start Frontend:
