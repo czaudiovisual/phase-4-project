@@ -16,6 +16,10 @@ body {
   align-items: center;
 }
 
+.back-button {
+  margin-top: 25px;
+}
+
 .body-app-edit {
   /* background: #76b852; */
   background: radial-gradient(circle, rgb(196, 189, 98), white);

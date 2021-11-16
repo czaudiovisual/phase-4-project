@@ -22,6 +22,7 @@ class UsersController < ApplicationController
         end
     end
 
+   
     # update user users/:id
     # def update
     #     @user.update!(user_params)

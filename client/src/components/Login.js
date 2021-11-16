@@ -40,9 +40,9 @@ function Login({ setCurrentUser }) {
         <div className="form-container">
           <h3>Login</h3>
           <form className="register-form" onSubmit={handleSubmit}>
-          {error ?
-            <Alert variant="danger">{error}</Alert> : <Alert variant="danger="></Alert>
-          }
+            {error ?
+              <Alert variant="danger">{error}</Alert> : <Alert variant="danger="></Alert>
+            }
             <input
               className="custom-imputs"
               type="text"
@@ -62,7 +62,9 @@ function Login({ setCurrentUser }) {
             <br />
             <Button variant="success" type="submit">Login</Button>{' '}
             <br />
-            <Button variant="secondary" href="/signup">Sign Up</Button>{' '}
+            <Link className="d-grid gap-2" to="/signup">
+              <Button variant="secondary">Sign up</Button>
+            </Link>
           </form>
         </div>
       </div>

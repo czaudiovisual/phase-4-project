@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import { Alert } from 'react-bootstrap'
 import { Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 function Signup({ setCurrentUser }) {
   const history = useHistory()
@@ -8,7 +10,13 @@ function Signup({ setCurrentUser }) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
-  const [error, setError] = useState("")
+  const [errors, setErrors] = useState("")
+
+  const displayError = () => {
+    return errors.map(error => {
+      return <div className="alert alert-danger" role="alert">{error}</div>
+    })
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -24,16 +32,16 @@ function Signup({ setCurrentUser }) {
         password_confirmation: passwordConfirmation,
       })
     })
-    .then((response) => {
-      if (response.ok) {
-        response.json().then((user) => {
-          setCurrentUser(user);
-          history.push('/claims')
-        })
-      } else {
-        response.json().then((error => setError(error.error)))
-      }
-    })
+      .then((response) => {
+        if (response.ok) {
+          response.json().then((user) => {
+            setCurrentUser(user);
+            history.push('/claims')
+          })
+        } else {
+          response.json().then((errors => setErrors(errors.errors)))
+        }
+      })
   }
 
   return (
@@ -42,6 +50,10 @@ function Signup({ setCurrentUser }) {
         <div className="form-container">
           <div className="authForm">
             <form className="register-form" onSubmit={handleSubmit}>
+              {/* <Alert variant="danger">{errors && displayError()}</Alert> */}
+              {errors ?
+                <Alert variant="danger">{errors && displayError()}</Alert> : <Alert variant="danger="></Alert>
+              }
               <h1>Sign Up</h1>
               <input
                 type="text"
@@ -77,8 +89,10 @@ function Signup({ setCurrentUser }) {
               />
               <br />
               <Button variant="success" type="submit">Sign Up</Button>{' '}
-              <p>-- or --</p>
-              <Button variant="secondary" href="/login">Login</Button>{' '}
+              <p>- or -</p>
+              <Link className="d-grid gap-2" to="/">
+                <Button variant="secondary">Login</Button>
+              </Link>
             </form>
           </div>
         </div>
