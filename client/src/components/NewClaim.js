@@ -1,17 +1,17 @@
 // import React from 'react'
 import { Button } from 'react-bootstrap';
+import { Alert } from 'react-bootstrap'
 import { useState } from 'react';
 import { useHistory } from 'react-router';
 import '../App.css';
-
 
 function NewClaim() {
     const [address, setAddress] = useState('')
     const [item_name, setItemName] = useState('')
     const [description, setDescription] = useState('')
     const [image_url, setImage] = useState('')
+    const [errors, setErrors] = useState("")
     const history = useHistory()
-
 
     const handleOnSubmit = (event) => {
         event.preventDefault()
@@ -27,17 +27,33 @@ function NewClaim() {
                 image_url: image_url,
             }),
         })
-            .then((res) => {
-                history.push('/claims')
+            .then((response) => {
+                if (response.ok) {
+                    response.json().then((
+                        history.push('/claims')
+                    ))
+                } else {
+                    response.json().then(errors => {
+                        setErrors(errors.errors)
+                    })
+                }
             })
     }
 
+    const displayError = () => {
+        return errors.map(error => {
+            return <div className="alert alert-danger" role="alert">{error}</div>
+        })
+    }
 
     return (
         <div className="body-app">
             <div className="form-outsider">
                 <div className="form-container">
                     <form className="register-form" onSubmit={handleOnSubmit}>
+                        {errors ?
+                            <Alert variant="danger">{errors && displayError()}</Alert> : <Alert variant="danger="></Alert>
+                        }
                         <p>Add Claim</p>
                         <input
                             onChange={(event) => setAddress(event.target.value)}

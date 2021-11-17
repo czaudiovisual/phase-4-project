@@ -1,5 +1,6 @@
 import { Button } from 'react-bootstrap';
 import { useState } from 'react';
+import { useEffect } from 'react'
 import { useHistory, useParams } from 'react-router';
 import '../App.css';
 
@@ -12,6 +13,19 @@ function EditClaim() {
     const { id } = useParams()
     const history = useHistory()
 
+    useEffect(() => {
+        preFillClaims();
+    }, [])
+    function preFillClaims() {
+        fetch(`/claims/${id}`)
+            .then(res => res.json())
+            .then(claim => {
+                setItemName(claim.item_name)
+                setAddress(claim.address)
+                setDescription(claim.description)
+                setImage(claim.image_url)
+            })
+    }
 
     const handleOnSubmit = (event) => {
         event.preventDefault()

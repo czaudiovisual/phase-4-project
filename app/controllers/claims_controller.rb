@@ -15,12 +15,11 @@ class ClaimsController < ApplicationController
         end
     end
     
-
     # show claim claims/:id
     def show
-        render json: @claim, status: :ok
+    render json: @claim, status: :ok
     end
-
+    
     # update claim claims/:id
     def update
         @claim.update!(claim_params)
@@ -44,5 +43,5 @@ class ClaimsController < ApplicationController
     def claim_params
         params.permit(:address, :item_name, :description, :user_id, :image_url)        
     end
-   
+
 end

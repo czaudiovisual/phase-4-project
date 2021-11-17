@@ -14,7 +14,7 @@ Claim.create(address: "4349 Sunrise Ave", item_name: "Roofing", description: "Ro
 Claim.create(address: "21722 Rainbow Ave", item_name: "Living Room Wall", description: "Living room wall damaged", image_url: "https://1fc4k12qfhga1etc0t3sh4o1-wpengine.netdna-ssl.com/wp-content/uploads/2015/08/damaged_wall-e1440750048269.jpg", user_id: 1)
 Claim.create(address: "4350 Sunrise Ave", item_name: "Air conditioner handler", description: "Not working propertly", image_url: "https://www.dontwasteyourmoney.com/wp-content/uploads/2018/06/538774812_679e512300_o_air-conditioner.jpg", user_id: 2)
 Claim.create(address: "4355 Sunrise Ave", item_name: "Garage door", description: "Missing part and broken door", image_url: "https://www.a-1garagedoors.com/sites/a-1garagedoors.com/files/00_A-1OverheadDoorSystems/blog/misaligned_Horizontal_tracks.png", user_id: 3)
-Claim.create(address: "4360 Sunrise Ave", item_name: "Living room windows", description: "Water leak problem", image_url: "https://leakdefensesystem.com/wp-content/uploads/2017/12/water-damage-living-room-2.jpg", user_id: 4)
-Claim.create(address: "4365 Sunrise Ave", item_name: "kitchen tiles", description: "Tiles broken", image_url: "https://st.hzcdn.com/fimgs/2282af5f00a8f30c_9553-w500-h666-b0-p0--.jpg", user_id: 5)
+Claim.create(address: "4360 Sunrise Ave", item_name: "Living room windows", description: "Water leak problem", image_url: "https://leakdefensesystem.com/wp-content/uploads/2017/12/water-damage-living-room-2.jpg", user_id: 1)
+Claim.create(address: "4365 Sunrise Ave", item_name: "kitchen tiles", description: "Tiles broken", image_url: "https://st.hzcdn.com/fimgs/2282af5f00a8f30c_9553-w500-h666-b0-p0--.jpg", user_id: 1)
 
 puts 'seeding done ✅✅✅'

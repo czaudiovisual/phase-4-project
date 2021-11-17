@@ -50,7 +50,6 @@ function Signup({ setCurrentUser }) {
         <div className="form-container">
           <div className="authForm">
             <form className="register-form" onSubmit={handleSubmit}>
-              {/* <Alert variant="danger">{errors && displayError()}</Alert> */}
               {errors ?
                 <Alert variant="danger">{errors && displayError()}</Alert> : <Alert variant="danger="></Alert>
               }
